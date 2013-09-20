@@ -1,0 +1,8 @@
+<h1><%= @restaurant.name %></h1>
+<%= image_tag @restaurant.image %>
+<%= @restaurant.address %>
+<%= @restaurant.phone_number %>
+<%= link_to((@restaurant.name), @restaurant.website_url) %>
+
+<%= link_to "Home", root_path %>
+<%= link_to "My Profile", owner_path(current_user) %>

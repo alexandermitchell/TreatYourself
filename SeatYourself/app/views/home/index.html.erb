@@ -1,0 +1,9 @@
+<%= render 'restaurants/slider' %>
+
+<%= link_to "Restaurants", restaurants_path %>
+<% if current_user %>
+<%= link_to "My Profile", owner_path(current_user) %> |
+<%= link_to "Log out", session_path(current_user), method: :delete %>
+<% else %>
+<%= link_to "Sign up", new_owner_path %> | <%= link_to "Log in", new_session_path %>
+<%end%>
