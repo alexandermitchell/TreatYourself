@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = Restaurant.new(restaurant_params)
+		@restaurant = current_user.restaurants.build(restaurant_params)
 		if @restaurant.save
 			redirect_to restaurant_path(@restaurant), notice: "#{@restaurant.name} has been created"
 		else
@@ -38,11 +38,11 @@ class RestaurantsController < ApplicationController
 
 	def destroy
 		@restaurant = Restaurant.find(params[:id])
-		if @restaurant.owner_id == current_user.id
-			@restaurant.destroy
+		if @restaurant.destroy#@restaurant.owner_id == current_user.id
+
 			redirect_to owner_path(current_user), notice: "Restaurant has been deleted"
 		else
-			render :edit
+			redirect_to restaurant_path(@restaurant)
 		end
 	end
 

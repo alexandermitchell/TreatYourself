@@ -6,3 +6,4 @@
 
 <%= link_to "Home", root_path %>
 <%= link_to "My Profile", owner_path(current_user) %>
+<%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete %>
