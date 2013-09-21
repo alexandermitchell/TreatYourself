@@ -34,6 +34,7 @@ class CustomersController < ApplicationController
   def destroy
   	@customer = Customer.find(params[:id])
   	if @customer.destroy
+      reset_session
   		redirect_to root_path
   	else
   		render :edit

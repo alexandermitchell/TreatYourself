@@ -4,5 +4,9 @@ class Restaurant < ActiveRecord::Base
 
 	belongs_to :owner
 
+	has_many :customers, through: :reservations
+
+	has_many :reservations
+
 	mount_uploader :image, ImageUploader
 end

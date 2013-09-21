@@ -1,24 +1,29 @@
-<div class="fix_that_shit">
+<div class="form">
 	<%= form_for @customer do |f| %>
 
 	<div class="field">
-	<%= f.label :name %><br />
-	<%= f.text_field :name %>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
 	</div>
 
 	<div class="field">
-	<%= f.label :email %><br />
-	<%= f.text_field :email %>
+		<%= f.label :email %><br />
+		<%= f.text_field :email %>
 	</div>
 
 	<div class="field">
-	<%= f.label :password %><br />
-	<%= f.password_field :password %>
+		<%= f.label :image %><br />
+		<%= f.file_field :image %>
 	</div>
 
 	<div class="field">
-	<%= f.label :password_confirmation %><br />
-	<%= f.password_field :password_confirmation %>
+		<%= f.label :password %><br />
+		<%= f.password_field :password %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation %>
 	</div>
 
 	<div class="action">

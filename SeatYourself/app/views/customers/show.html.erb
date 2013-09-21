@@ -1,2 +1,7 @@
-<%= @customer.name %>
-<%= @customer.email %>
+<h1> <%= @customer.name %></h1>
+
+<div class="customer">
+	<p><%= @customer.email %></p> 
+</div>
+
+<%= link_to "Home", root_path %> | <%= link_to "Edit Profile", edit_customer_path(current_user) %>

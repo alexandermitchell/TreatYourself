@@ -1,9 +1,19 @@
 <h1><%= @restaurant.name %></h1>
+
+<div>
 <%= image_tag @restaurant.image %>
 <%= @restaurant.address %>
 <%= @restaurant.phone_number %>
 <%= link_to((@restaurant.name), @restaurant.website_url) %>
+</div>
 
-<%= link_to "Home", root_path %>
-<%= link_to "My Profile", owner_path(current_user) %>
-<%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete %>
+<%# if @owner %> 
+<%= link_to "My Profile", owner_path(current_user) %> | 
+<%= link_to "Home", root_path %> | 
+<%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete %> |
+<%#end%>
+<%# if @customer %>
+ <%= link_to "Make Reservation", new_restaurant_reservation_path(@restaurant)%> | 
+ <%= link_to "My Profile", owner_path(current_user) %> | 
+ <%= link_to "Home", root_path %>
+<%#end%>

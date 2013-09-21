@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   
   def current_user
-  	if session[:owner_id] == nil
-  		@current_user ||= Customer.find(session[:customer_id]) if session[:customer_id]
-	else
-  		@current_user ||= Owner.find(session[:owner_id]) if session[:owner_id]
+    if session[:customer_id] == nil
+      @current_user ||= Owner.find(session[:owner_id]) if session[:owner_id]
+    else
+      @current_user ||= Customer.find(session[:customer_id]) if session[:customer_id]
   	end
   end
 

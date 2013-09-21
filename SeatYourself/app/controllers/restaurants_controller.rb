@@ -39,7 +39,6 @@ class RestaurantsController < ApplicationController
 	def destroy
 		@restaurant = Restaurant.find(params[:id])
 		if @restaurant.destroy#@restaurant.owner_id == current_user.id
-
 			redirect_to owner_path(current_user), notice: "Restaurant has been deleted"
 		else
 			redirect_to restaurant_path(@restaurant)
@@ -50,6 +49,10 @@ class RestaurantsController < ApplicationController
 
 	def restaurant_params
 		params.require(:restaurant).permit(:name, :address, :image, :phone_number, :website_url, :owner_id)
+	end
+
+	def reservation_params
+			params.require(:reservation).permit(:time_slot, :groupsize, :restaurant_id, :customer_id)
 	end
 
 
