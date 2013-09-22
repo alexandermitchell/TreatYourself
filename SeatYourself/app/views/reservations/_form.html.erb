@@ -1,0 +1,19 @@
+<div class="large-8 columns">
+	<div class="field">
+		<%= form_for [@restaurant, @reservation] do |f| %>
+		<div class="field">
+			<%= f.label :time_slot %>
+			<%= f.datetime_select(:time_slot, ampm: true, prompt: {month: 'Month', day: 'Day', hour: true}) %>
+		</div>
+		<div class="field">
+			<%= f.label :groupsize %>
+			<%= f.number_field :groupsize %>
+		</div>
+		<div>
+			<%= f.submit %>
+		</div>
+		</div>	
+	<% end %>
+	</div>
+
+</div>

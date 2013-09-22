@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = current_user.restaurants.build(restaurant_params)
+		@restaurant = Restaurant.new(restaurant_params)
 		if @restaurant.save
 			redirect_to restaurant_path(@restaurant), notice: "#{@restaurant.name} has been created"
 		else
