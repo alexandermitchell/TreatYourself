@@ -1,6 +1,18 @@
 <div class="large-8 columns">
 	<div class="field">
 		<%= form_for [@restaurant, @reservation] do |f| %>
+
+		<% if @reservation.errors.any? %>
+    		<div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% @reservation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+ 		<% end %>
 		<div class="field">
 			<%= f.label :time_slot %>
 			<%= f.datetime_select(:time_slot, ampm: true, prompt: {month: 'Month', day: 'Day', hour: true}) %>
