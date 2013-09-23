@@ -1,1 +1,9 @@
+<div class="row">
 <%= render 'reservations/form' %>
+</div>
+
+<div class="row">
+	<div class="large-8 columns">
+		<%= link_to "Delete Reservation", restaurant_reservation_path(restaurant_id: @reservation.restaurant_id, id: @reservation.id), method: :delete, data: {confirm: "Are You Sure?"} %> | <%= link_to "Cancel", customer_reservations_path(customer_id: current_user.id) %>
+	</div>
+</div>

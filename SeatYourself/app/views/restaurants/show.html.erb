@@ -1,19 +1,60 @@
-<h1><%= @restaurant.name %></h1>
-
-<div>
-<%= image_tag @restaurant.image %>
-<%= @restaurant.address %>
-<%= @restaurant.phone_number %>
-<%= link_to((@restaurant.name), @restaurant.website_url) %>
+<div class="row">
+    <div class="large-8 columns">
+      
+      <!-- Main Banner Image - place in a paragraph to enforce the modular scale spacing -->
+      <p> <%= image_tag @restaurant.image %></p>
+    </div>
 </div>
+<!-- Main Content Section -->
 
-<%# if @owner %> 
-<%= link_to "My Profile", owner_path(current_user) %> | 
-<%= link_to "Home", root_path %> | 
-<%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete %> |
-<%#end%>
-<%# if @customer %>
- <%= link_to "Make Reservation", new_restaurant_reservation_path(@restaurant)%> | 
- <%= link_to "My Profile", owner_path(current_user) %> | 
- <%= link_to "Home", root_path %>
-<%#end%>
+<div class="row">
+	<div class="large-8 columns">
+  		<h4><%= @restaurant.name %> Information</h4>
+  		<p>Address: <%= @restaurant.address %></p>
+  		<p>Website: <%= link_to "Visit Our Website", @restaurant.website_url %></p>
+	</div>  
+</div>
+  
+<div class="row">
+  	<aside class="large-8 columns">
+      <h5>Options</h5>
+      <ul class="side-nav">
+      	<% if session[:customer_id] == current_user.id %>
+        <li><%= link_to "Make Reservation", customer_reservations_path(customer_id: current_user.id) %></li>
+       	<% elsif session[:owner_id] == current_user.id %>
+       	<li><%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant)%></li>
+       	<%end%>
+      </ul>
+ 
+	</aside>
+</div>
+  
+  
+  <!-- Footer -->
+  
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; Copyright TreatYourself</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+          	<% if session[:owner_id] == current_user.id %>
+          	<li><a href="#"><%= link_to "Home", root_path %></a></li>
+            <li><a href="#"><%= link_to "My Profile", owner_path(current_user) %></a></li>
+            <li><a href="#"><%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant) %></a></li>
+            <% elsif session[:customer_id] == current_user.id %>
+            <li><a href="#"><%= link_to "Home", root_path %></a></li>
+            <li><a href="#"><%= link_to "My Profile", owner_path(current_user) %></a></li>
+            <li><a href="#"><%= link_to "Make Reservation", new_restaurant_reservation_path(@restaurant)%></a></li>
+            <%else%>
+            <li><a href="#"><%= link_to "Home", root_path %></a></li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </footer>
+

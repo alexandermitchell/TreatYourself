@@ -5,11 +5,13 @@ class Reservation < ActiveRecord::Base
 
 	validate :less_than_max_occupancy
 
+
 	def less_than_max_occupancy
-	  other_people = Reservation.where(:restaurant_id => self.restaurant_id, :time_slot => self.time_slot.day).sum(:groupsize)
+	  other_people = Reservation.where(:restaurant_id => self.restaurant_id, :time_slot => self.time_slot.day, :time_slot => self.time_slot.hour).sum(:groupsize)
 
 	  if other_people + self.groupsize > 10
-	     errors.add(:base, "Sorry, too many people!")
+	     errors.add(:base, "Cannot accommodate group size for specified time")
 	  end
 	end
+
 end

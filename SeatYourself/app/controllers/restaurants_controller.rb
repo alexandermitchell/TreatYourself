@@ -9,8 +9,10 @@ class RestaurantsController < ApplicationController
 	end
 
 	def edit
-		#if @restaurant.owner_id == current_user.id
 		@restaurant = Restaurant.find(params[:id])
+		if @restaurant.owner_id == current_user.id
+			render :edit
+		end
 	end
 
 	def new
@@ -19,6 +21,7 @@ class RestaurantsController < ApplicationController
 
 	def create
 		@restaurant = Restaurant.new(restaurant_params)
+		@restaurant.owner_id = current_user.id
 		if @restaurant.save
 			redirect_to restaurant_path(@restaurant), notice: "#{@restaurant.name} has been created"
 		else
@@ -48,7 +51,7 @@ class RestaurantsController < ApplicationController
 	private
 
 	def restaurant_params
-		params.require(:restaurant).permit(:name, :address, :image, :phone_number, :website_url, :owner_id)
+		params.require(:restaurant).permit(:name, :address, :image, :phone_number, :website_url, :owner_id, :capacity)
 	end
 
 	def reservation_params

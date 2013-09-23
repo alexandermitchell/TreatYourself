@@ -35,13 +35,14 @@ class ReservationsController < ApplicationController
 
   	def update
     	if @reservation.update_attributes(reservation_params)
-     		 redirect_to root_path
+     		 redirect_to customer_path(current_user)
     	else
       		render :edit
     	end
   	end
 
   	def destroy
+      @restaurant = Restaurant.find(params[:restaurant_id])
    		@reservation.destroy
     	redirect_to root_path, notice: "reservation deleted"
   	end
@@ -53,7 +54,7 @@ class ReservationsController < ApplicationController
     end
 
   	def restaurant_params
-		  params.require(:restaurant).permit(:name, :address, :image, :phone_number, :website_url, :owner_id)
+		  params.require(:restaurant).permit(:name, :address, :image, :phone_number, :website_url, :owner_id, :capacity)
     end
 
     def find_reservation

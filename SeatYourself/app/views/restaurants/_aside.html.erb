@@ -1,0 +1,9 @@
+<aside class="large-4 columns">
+ 
+      <h5>Profile Options</h5>
+      <ul class="side-nav">
+        <li><%= link_to "My Reservations", customer_reservations_path(customer_id: current_user.id) %></li>
+        <li><%= link_to "Edit Profile", edit_customer_path(current_user) %></li>
+      </ul>
+ 
+</aside>

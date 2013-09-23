@@ -1,7 +1,10 @@
-<div class="hide-for-small">
-        <div id="featured">
-            <% @restaurants.each do |restaurant| %>
-            	<%= image_tag restaurant.image %>
-            <%end%>
-        </div>
+<div class="row">
+    <div class="large-12 columns">
+    	<div id="featured">
+    		<% @restaurants.each do |restaurant| %>
+    		<%= image_tag("slider/#{restaurant.image}")%>
+    		<%end%>
+    	</div>
+    <hr />
+    </div>
 </div>

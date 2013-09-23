@@ -1,18 +1,18 @@
 <%= link_to "Restaurants", restaurants_path %> |
 
-<%# if current_user.is_a?(Owner) %> 
-<%#= link_to "My Profile", owner_path(current_user) %> 
-<%#= link_to "Log out", session_path(current_user), method: :delete %> 
-<%# elsif current_user.is_a?(Customer) %>
-<%#= link_to "Make Reservation", new_restaurant_reservation_path %> 
+<% if current_user == nil %>
+<%= link_to "Log in", new_session_path %> | <%= link_to "Join as Customer", new_customer_path %> | <%= link_to "Join as Business Owner", new_owner_path %>
+<% elsif session[:owner_id] == current_user.id %>  
+<%= link_to "My Profile", owner_path(current_user) %> |
+<%= link_to "Log out", session_path(current_user), method: :delete %> 
+<% elsif session[:customer_id] == current_user.id %> 
 <%= link_to "My Profile", customer_path(current_user) %> |
-<%#else%>
-<%= link_to "Log in", new_session_path %> | <%= link_to "Join as Customer", new_customer_path %> | <%= link_to "Join as Business Owner", new_owner_path %> |
-<%#end%>
+<%= link_to "Log out", session_path(current_user), method: :delete %>
+<%end%>
 
 <%# if current_user %>
- <%= link_to "My Profile", owner_path(current_user) %> | 
- <%= link_to "Log out", session_path(current_user), method: :delete %>
+ <%#= link_to "My Profile", owner_path(current_user) %>  
+ <%#= link_to "Log out", session_path(current_user), method: :delete %>
 <%# else %>
 
 <%#end%>

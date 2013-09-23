@@ -1,13 +1,13 @@
-<h1>Restaurants</h1>
-
 <% @restaurants.each do |restaurant| %>
 
-<div>
-<%= image_tag restaurant.image %>
-<%= link_to restaurant.name, restaurant %>
-<%= restaurant.address %>
-<%= restaurant.phone_number %>
-<%= restaurant.website_url %>
+<div class="large-8 columns">
+    <div class="row">
+        <div class="large-4 small-6 columns">
+            <%= image_tag restaurant.image %>
+            <div class="panel">
+               	<h5><%= link_to restaurant.name, restaurant %></h5>
+            </div>
+        </div>
+    </div>
 </div>
-
 <%end%>

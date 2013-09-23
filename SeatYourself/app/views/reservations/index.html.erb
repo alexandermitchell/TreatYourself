@@ -1,17 +1,14 @@
 <% @reservations.each do |reservation| %>
 <div>
-<h2><%= reservation.restaurant[:name] %> 
-</h2>
+	<h5><%= reservation.restaurant[:name] %></h5>
+	<div>
+		<%= reservation.time_slot.strftime("%b %e, %l:%M %p") %>
+	</div>
 
+	<div>
+		Group Size: <%= reservation.groupsize %>
+	</div>
 <%= link_to "Edit Reservation", edit_restaurant_reservation_path(restaurant_id: reservation.restaurant_id, id: reservation.id)%>
-<div>
-<%= reservation.time_slot.strftime("%b %e, %l:%M %p") %>
-</div>
-
-<div>
-Group Size: <%= reservation.groupsize %>
-</div>
-
 </div>
 
 <%end%>
